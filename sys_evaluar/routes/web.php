@@ -18,4 +18,15 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/titulos',                              'AdminController@showTitulos');
+Route::get('/titulos/crear',                        'AdminController@showTitCreate');
+Route::get('/titulos/{id}/editar',                  'AdminController@showTitEdit');
+Route::post('/titulos',                             'AdminController@createTit');
+Route::post('/titulos/{tit}/editar',                'AdminController@editTit');
+Route::get('/titulos/{tit}/eliminar',               'AdminController@deleteTit');
+
 Route::get('/', 'PagesController@showHome')->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
