@@ -7,15 +7,15 @@
         @include('admin.message')
         @include('admin.errors')
 
-        <h1>Editar Título</h1>
+        <h1>Editar Períodos</h1>
 
-        <form action="{{ url('/admin/titulos/' . $titulo->id . '/editar') }}" method="post">
+        <form action="{{ url('/admin/periodos/' . $periodo->id . '/editar') }}" method="post">
 
             @csrf
 
             <div class="form-group">
-                <label for="descrip">Título</label>
-                <input type="text" class="form-control" id="descrip" name="descrip" placeholder="Ingresar título..." value="{{ old('descrip', $titulo->descrip) }}">
+                <label for="descrip">Descripción del período</label>
+                <input type="text" class="form-control" id="descrip" name="descrip" placeholder="Ingresar descrip de período..." value="{{ old('descrip', $periodo->descrip) }}">
             </div>
 
             <button type="submit" class="btn btn-primary">Modificar</button>

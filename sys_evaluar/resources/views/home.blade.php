@@ -30,7 +30,7 @@
     <div id="home-carousel" class="carousel slide" data-ride="carousel">
 
         <!-- Indicators -->
-        <ol class="carousel-indicators">
+        <ol id="myCarousel-indicators" class="carousel-indicators">
             <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
             <li data-target="#home-carousel" data-slide-to="1"></li>
             <li data-target="#home-carousel" data-slide-to="2"></li>

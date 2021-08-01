@@ -50,6 +50,12 @@ h6 {
     border-bottom: 4px solid #ff8f00;
     margin-bottom: 30px;
 }
+#myCarousel-indicators li {
+    border-radius: 50%;
+    background-color: #f18700;
+    width: 12px;
+    height: 12px;
+}
 
 #home-carousel .car-image {
     height: 600px;
@@ -268,4 +274,16 @@ h6 {
 #footer ul li a,
 #footer ul li a:visited {
     color: #eeeeee;
+}
+#evaluaBusca {
+    border-top: 4px solid #ff8f00;
+    background-color: #fffa9d;
+}
+#evaluaTitulo {
+    border-top: 4px solid #ff8f00;
+    background-color: #fffa9d;
+}
+#evaluaPregunta {
+    border-top: 4px solid #ff8f00;
+    background-color: #fffa9d;
 }

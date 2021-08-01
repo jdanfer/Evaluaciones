@@ -13,13 +13,13 @@
 
         <div class="row">
             <div class="col-md-6">
-                <img id="company-photo" class="img-thumbnail img-fluid" src="{{ asset('img/about_us/about.jpg') }}" alt="Sobre AUTOVIP">
+                <img id="company-photo" class="img-thumbnail img-fluid" src="{{ asset('img/about_us/somos1.jpg') }}" alt="Sobre AUTOVIP">
             </div>
             <div class="col-md-6">
-                <h2><span>AUTO</span><strong>VIP</strong></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed voluptate nihil eum consectetur similique? Consectetur, quod, incidunt, harum nisi dolores delectus reprehenderit voluptatem perferendis dicta dolorem non blanditiis ex fugiat.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, magni, aperiam vitae illum voluptatum aut sequi impedit non velit ab ea pariatur sint quidem corporis eveniet. Odit, temporibus reprehenderit dolorum!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, consequuntur, modi mollitia corporis ipsa voluptate corrupti eum ratione ex ea praesentium quibusdam? Aut, in eum facere corrupti necessitatibus perspiciatis quis?</p>
+                <h2><span>EVALUACIONES</span><strong>FREE</strong></h2>
+                <p>Nuestro sitio pretende que cualquier empresa que se registre, pueda realizar en forma totalmente gratuita</p>
+                <p>Las EVALUACIONES del Personal. Teniendo total control sobre los datos ingresados y pudiendo descargar los mismos</p>
+                <p>a planillas electrónicas o documentos en PDF para tenerlos como respaldo.</p>
                 <p>
                     <button type="button" name="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#contacto-modal"><i class="far fa-envelope"></i> Contacto</button>
                 </p>
