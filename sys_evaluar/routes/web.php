@@ -20,12 +20,12 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'AdminController@showHome')->name('home');
-Route::get('/autoevaluacion',                       'AdminController@showAutoEvaluacionCons');
-Route::get('/autoevaluacion/consulta',              'AdminController@showAutoEvaluacionCons');
-Route::post('/autoevaluacion/crear',                'AdminController@showAutoEvalCreate');
-
-Route::get('/evaluacion',                           'AdminController@showEvaluacion');
-Route::post('/evaluacion',                     'AdminController@showEvalCreate');
+Route::get('/autoevaluacion',                           'AdminController@showAutoEvaluacionCons');
+Route::get('/autoevaluacion/{documento}/crear',         'AdminController@showAutoEvalCreate');
+Route::get('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',   'AdminController@showEvalEdit');
+Route::post('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',  'AdminController@editAutoevaluacion');
+Route::get('/evaluacion',                               'AdminController@showEvaluacion');
+Route::post('/evaluacion',                              'AdminController@showEvalCreate');
 
 Route::get('logout', function () {
     Auth::logout();
@@ -84,6 +84,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function () {
     Route::post('/personas',                              'AdminController@createPersona');
     Route::post('/personas/{cargo}/editar',               'AdminController@editPersona');
     Route::get('/personas/{cargo}/eliminar',              'AdminController@deletePersona');
+
     Route::get('/ventas', 'SalesController@filtersCars')->name('filters');
     Route::get('/ventas/{year}{brand_id}{car_model_ir}{status}', 'SalesController@filtersCarsSelect')->name('filters');
 

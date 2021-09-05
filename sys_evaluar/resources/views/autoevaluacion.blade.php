@@ -8,12 +8,13 @@
         
         <h1>Crear AutoEvaluación</h1>
 
-        <form action="" method="">
+        <form action="{{ url('/autoevaluacion') }}" method="get">
+            @csrf
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="documento">Ingrese documento</label>
-                        <input type="text" class="form-control" id="documento" name="documento" maxlength="10" placeholder="Ingrese documento a buscar">
+                        <input type="text" class="form-control" id="documento" name="documento" maxlength="10" autofocus autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Ingrese documento a buscar">
                     </div>    
                 </div>
                 <div class="col-sm-6">
@@ -41,7 +42,7 @@
                             <td>{{ $datoperson->cargo->descrip }}</td>
                             <td>{{ $datoperson->cargo->jefatura->descrip }}</td>
                             <td style="width: 200px;">
-                                <a href="{{ url('/autoevaluacion/crear/' . $datoperson->persona_doc ) }}" class="btn btn-sm btn-primary">Autoevaluar</a>
+                                <a href="{{ url('/autoevaluacion/' . $datoperson->persona_doc . '/crear') }}" class="btn btn-sm btn-primary">Autoevaluar</a>
                             </td>    
                         </tr>
                     @endforeach

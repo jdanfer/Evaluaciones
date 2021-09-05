@@ -11,6 +11,7 @@ use App\Models\Pregunta;
 use App\Models\Persona;
 use App\Models\Evalua;
 use App\Models\Punto;
+use Illuminate\Support\Facades\Date;
 
 class AdminController extends Controller
 {
@@ -427,33 +428,6 @@ class AdminController extends Controller
     }
 
     // EVALUACIONES
-    public function showAutoEvaluacion(Request $request)
-    {
-        $puntos = Punto::all();
-
-        if (isset($request->documento)) {
-            $persoid = Persona::where('persona_doc', $request->documento)->first();
-            $evalBuilder = Evalua::orderBy('pregunta_id', 'asc')->get();
-            $evalBuilder = $evalBuilder->where('persona_id', $persoid->id);
-            //            $preguntas = Pregunta::where('jefatura_id', $persoid->jefatura_id)->first();
-        } else {
-            $evalBuilder = Evalua::orderBy('pregunta_id', 'asc')->get();
-            $evalBuilder = $evalBuilder->where('persona_id', 0);
-            //            $preguntas = Pregunta::where('jefatura_id', 0)->get();
-        }
-        $titulos = Titulo::all();
-        $periodos = Periodo::all();
-        $evaluaciones = $evalBuilder;
-        $preguntas = Pregunta::all();
-        //        $personas = Persona::all();
-        return view('/autoevaluacion', [
-            'autoevaluacion' => $evaluaciones,
-            'titulos' => $titulos,
-            'periodos' => $periodos,
-            'preguntas' => $preguntas,
-            'puntos' => $puntos
-        ]);
-    }
 
     public function showAutoEvaluacionCons(Request $request)
     {
@@ -467,5 +441,85 @@ class AdminController extends Controller
         return view('/autoevaluacion', [
             'datospersona' => $datospersona
         ]);
+    }
+
+    //showAutoEvalCreate -Ver autoevaluacion y preguntas por grupo
+    public function showAutoEvalCreate(Request $request, $documento)
+    {
+        $periodos = Periodo::all();
+        $persona = Persona::where('persona_doc', $documento)->first();
+        $titulos = Titulo::all();
+        if (isset($request->periodo_id)) {
+            $datosautoeval = Evalua::where('persona_id', $persona->id);
+            $datosautoeval = $datosautoeval->where('periodo', $request->periodo)->first();
+        } else {
+            $datosautoeval = Evalua::where('persona_id', $persona->id)->first();
+        }
+        if (isset($request->titulo_id)) {
+            //            $datospreguntas = Pregunta::all();
+            $datospreguntas = Pregunta::where('titulo_id', $request->titulo_id)->get();
+            //            $datospreguntas = $datospreguntas->where('jefatura_id', $persona->cargo->jefatura_id)->get();
+        } else {
+            $datospreguntas = Pregunta::where('titulo_id', 0)->get();
+        }
+        return view('/autoevalCreate', [
+            'persona' => $persona,
+            'titulos' => $titulos,
+            'periodos' => $periodos,
+            'datosautoeval' => $datosautoeval,
+            'datospreguntas' => $datospreguntas
+        ]);
+    }
+
+    public function showEvalEdit(Request $request)
+    {
+        $pregunta = Pregunta::find($request->id);
+        $persona = Persona::find($request->persona_id);
+        $datosautoeval = Evalua::where('persona_id', $request->persona_id);
+        $datosautoeval = $datosautoeval->where('periodo', $request->periodo);
+        $datosautoeval = $datosautoeval->where('pregunta_id', $request->id)->first();
+        return view('/autoevaleditModif', [
+            'datosautoeval' => $datosautoeval,
+            'pregunta' => $pregunta,
+            'persona' => $persona
+        ]);
+    }
+
+    //editAutoevaluacion
+
+    public function editAutoevaluacion(Request $request)
+    {
+        $fecha = date('Y-m-d');
+        $rules = [
+            'persona_id' => 'required',
+            'puntos' => 'required|between:1,5',
+        ];
+        $customMessages = [
+            'persona_id.required' => 'El campo Id persona es obligatorio',
+            'puntos.required'     => 'El campo puntaje es requerido.',
+            'puntos.between'      => 'El campo puntaje debe ser entre 1 y 5.',
+        ];
+        $request->validate($rules, $customMessages);
+        $personabusco = Persona::find($request->documento);
+        $evalua = new Evalua;
+        $evalua->fecha = $fecha;
+        $evalua->persona_id = $request->persona_id;
+        $evalua->jefatura_id = 0;
+        $evalua->titulo_id = 0;
+        $evalua->puntos = $request->puntos;
+        $evalua->pregunta_id = $request->id;
+        $evalua->periodo = $request->periodo;
+        $evalua->confirmado = 1;
+        $evalua->save();
+
+        //        $evalua = Evalua::create($request->all());
+        //        $evalua->save();
+
+        //        $evaluas = Evalua::updateOrCreate(
+        //            ['persona_id' => $personabusco->id, 'periodo' => $request->periodo, 'pregunta_id' => $id],
+        //            ['puntos' => $request->puntaje]
+        //        );
+
+        return redirect('/autoevaluacion/' . $request->documento . '/crear')->with('mensaje', 'Se ha cargado el puntaje correctamente.');
     }
 }

@@ -41,4 +41,9 @@ class Evalua extends Model
     {
         return $this->belongsTo('App\Models\Jefatura');
     }
+
+    public function pregunta()
+    {
+        return $this->belongsTo('App\Models\Pregunta');
+    }
 }
