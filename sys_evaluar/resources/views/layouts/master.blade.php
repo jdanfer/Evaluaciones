@@ -51,7 +51,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
     <!-- JS Propio -->
-    <script src={{ asset('js/miapp.js') }}></script>
 
 </body>
 

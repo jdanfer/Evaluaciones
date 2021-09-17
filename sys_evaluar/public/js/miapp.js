@@ -33,3 +33,15 @@ $("#email").on("keypress", function () {
         $("#btn_enviar").attr("disable");
     }
 });
+
+function showTime() {
+    myDate = new Date();
+    hours = myDate.getHours();
+    minutes = myDate.getMinutes();
+    seconds = myDate.getSeconds();
+    if (hours < 10) hours = 0 + hours;
+    if (minutes < 10) minutes = "0" + minutes;
+    if (seconds < 10) seconds = "0" + seconds;
+    $("#FechaActual").text(hours + ":" + minutes + ":" + seconds);
+    setTimeout("showTime()", 1000);
+}
