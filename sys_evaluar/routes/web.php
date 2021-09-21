@@ -20,12 +20,12 @@ Route::get('/', function () {
 */
 
 Route::get('/', 'AdminController@showHome')->name('home');
-Route::get('/autoevaluacion',                           'AdminController@showAutoEvaluacionCons');
-Route::get('/autoevaluacion/{documento}/crear',         'AdminController@showAutoEvalCreate');
-Route::get('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',   'AdminController@showEvalEdit');
-Route::post('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',  'AdminController@editAutoevaluacion');
-Route::get('/evaluacion',                               'AdminController@showEvaluacion');
-Route::post('/evaluacion',                              'AdminController@showEvalCreate');
+Route::get('/autoevaluacion',                                       'AdminController@showAutoEvaluacionCons');
+Route::get('/autoevaluacion/{documento}/crear',                     'AdminController@showAutoEvalCreate');
+Route::get('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',    'AdminController@showEvalEdit');
+Route::post('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',        'AdminController@editAutoevaluacion');
+Route::get('/evaluacion',                                           'AdminController@showEvaluacion');
+Route::post('/evaluacion',                                          'AdminController@showEvalCreate');
 
 Route::get('logout', function () {
     Auth::logout();
@@ -42,8 +42,8 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function () {
     Route::get('/titulos/crear',                        'AdminController@showTitCreate');
     Route::get('/titulos/{id}/editar',                  'AdminController@showTitEdit');
     Route::post('/titulos',                             'AdminController@createTit');
-    Route::post('/titulos/{id}/editar',                'AdminController@editTit');
-    Route::get('/titulos/{id}/eliminar',               'AdminController@deleteTit');
+    Route::post('/titulos/{id}/editar',                 'AdminController@editTit');
+    Route::get('/titulos/{id}/eliminar',                'AdminController@deleteTit');
 
     // Admin de Evaluadores: ok
     Route::get('/evaluadores',                          'AdminController@showJefaturas');

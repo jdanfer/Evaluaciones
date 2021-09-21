@@ -473,15 +473,19 @@ class AdminController extends Controller
 
     public function showEvalEdit(Request $request)
     {
+        $periodo = $request->periodo;
         $pregunta = Pregunta::find($request->id);
         $persona = Persona::find($request->persona_id);
+        $evalua = Evalua::find($request->persona_id);
         $datosautoeval = Evalua::where('persona_id', $request->persona_id);
         $datosautoeval = $datosautoeval->where('periodo', $request->periodo);
         $datosautoeval = $datosautoeval->where('pregunta_id', $request->id)->first();
         return view('/autoevaleditModif', [
             'datosautoeval' => $datosautoeval,
             'pregunta' => $pregunta,
-            'persona' => $persona
+            'persona' => $persona,
+            'evalua' => $evalua,
+            'periodo' => $periodo
         ]);
     }
 
@@ -489,7 +493,6 @@ class AdminController extends Controller
 
     public function editAutoevaluacion(Request $request)
     {
-        $fecha = date('Y-m-d');
         $rules = [
             'persona_id' => 'required',
             'puntos' => 'required|between:1,5',
@@ -500,11 +503,12 @@ class AdminController extends Controller
             'puntos.between'      => 'El campo puntaje debe ser entre 1 y 5.',
         ];
         $request->validate($rules, $customMessages);
-        $personabusco = Persona::find($request->documento);
+        $persona = Persona::find($request->persona_id);
+        $pregunta = Pregunta::find($request->id);
         $evalua = new Evalua;
-        $evalua->fecha = $fecha;
+        $evalua->fecha = $request->FechaActual;
         $evalua->persona_id = $request->persona_id;
-        $evalua->jefatura_id = 0;
+        $evalua->jefatura_id = $persona->cargo->jefatura_id;
         $evalua->titulo_id = 0;
         $evalua->puntos = $request->puntos;
         $evalua->pregunta_id = $request->id;
