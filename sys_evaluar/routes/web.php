@@ -25,7 +25,6 @@ Route::get('/autoevaluacion/{documento}/crear',                     'AdminContro
 Route::get('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',    'AdminController@showEvalEdit');
 Route::post('/autoevaluacion/{id}/{persona_id}/{periodo}/editar',        'AdminController@editAutoevaluacion');
 Route::get('/evaluacion',                                           'AdminController@showEvaluacion');
-Route::post('/evaluacion',                                          'AdminController@showEvalCreate');
 
 Route::get('logout', function () {
     Auth::logout();

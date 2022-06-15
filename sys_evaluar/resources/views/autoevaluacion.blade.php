@@ -8,7 +8,7 @@
         
         <h1>Crear AutoEvaluación</h1>
 
-        <form action="{{ url('/autoevaluacion') }}" method="get">
+        <form action="" method="">
             @csrf
             <div class="row">
                 <div class="col-sm-6">

@@ -10,9 +10,7 @@
         <h1>Agregar Cargo</h1>
 
         <form action="{{ url('/admin/cargos/') }}" method="post">
-
             @csrf
-
             <div class="form-group">
                 <label for="select-jefatura">Jefatura</label>
                 <select id="select-jefatura" class="form-control input-sm" name="jefatura_id">

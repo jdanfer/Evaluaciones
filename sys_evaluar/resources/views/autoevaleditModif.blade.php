@@ -7,7 +7,7 @@
         @include('admin.errors')
 
         <h1>Funcionario: {{ $persona->persona_nom1 }} {{ $persona->persona_ape1 }}</h1>
-        <form action="{{ url('/autoevaluacion/' . $pregunta->id . '/' . $persona->persona_id . '/' . $periodo . '/editar') }}" method="post">
+        <form action="{{ url('/autoevaluacion/' . $pregunta->id . '/' . $persona->id . '/' . $periodo . '/editar') }}" method="post">
 
             @csrf
             <div class="form-group">
@@ -18,6 +18,7 @@
             <div class="form-group">
                 <label for="descrip">Pregunta</label>
                 <textarea class="form-control" style="width: 600px" id="descrip" name ="descrip" rows="4" disabled>{{ $pregunta->pregunta_nro }}. {{ $pregunta->descrip }}</textarea>
+                <input type="hidden" class="form-control" id="id" name="id" value="{{ $pregunta->id }}">
             </div>
             <div class="form-group">
                 <label for="puntos">Puntaje</label>

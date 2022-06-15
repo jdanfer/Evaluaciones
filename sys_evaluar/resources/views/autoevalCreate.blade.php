@@ -66,18 +66,18 @@
                                     <td>{{ $datopregunta->descrip }}</td>
                                     @if (isset($datosautoeval))
                                         @foreach ($datosautoeval as $datoautoeval)
-                                            @if ($datoautoeval->pregunta_id==$datopregunta->id)
+                                            @if ($datoautoeval->pregunta_id===$datopregunta->id)
                                                 <td>{{ $datoautoeval->puntos }}</td>
-                                            @else
-                                                <td>Sin puntaje</td>
                                             @endif
                                         @endforeach
+                                        @if (empty($datoautoeval))
+                                            <td>Sin puntaje</td>
+                                        @endif
                                     @else
                                         <td>Sin puntaje</td>
                                     @endif
                                     <td style="width: 200px;">
                                         <a href="{{ url('/autoevaluacion/' . $datopregunta->id . '/' . $persona->id . '/' . $periodo->descrip . '/editar') }}" class="btn btn-sm btn-primary">Editar</a>
-
                                     </td>
                                 </tr>
                             @endforeach 
