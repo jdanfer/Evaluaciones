@@ -46,6 +46,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Agregar</button>
+            <button type="submit" class="btn btn-primary">Agregar</button>
 
         </form>
 
