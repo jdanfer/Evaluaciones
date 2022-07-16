@@ -87,7 +87,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function () {
     Route::get('/ventas', 'SalesController@filtersCars')->name('filters');
     Route::get('/ventas/{year}{brand_id}{car_model_ir}{status}', 'SalesController@filtersCarsSelect')->name('filters');
 
-    // Ruta para realizar logout del usuario loggueado:
+    // Ruta para realizar logout del usuario iniciado:
     Route::get('/logout',                             'Auth\LoginController@logout');
 });
 Auth::routes();
