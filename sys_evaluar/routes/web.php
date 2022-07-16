@@ -76,7 +76,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function () {
     Route::post('/preguntas/{cargo}/editar',               'AdminController@editPregunta');
     Route::get('/preguntas/{cargo}/eliminar',              'AdminController@deletePregunta');
 
-    // Admin de Personas:
+    // Admin de Personas a evaluar:
     Route::get('/personas',                               'AdminController@showPersonas');
     Route::get('/personas/crear',                         'AdminController@showPersonaCreate');
     Route::get('/personas/{id}/editar',                   'AdminController@showPersonaEdit');
